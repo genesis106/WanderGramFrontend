@@ -13,7 +13,7 @@ const NewsCards = ({ filter }) => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "https://wandergrambackend.onrender.com/news"
+          "https://moodlens-1.onrender.com/news"
         );
 
         // Add validation and logging
