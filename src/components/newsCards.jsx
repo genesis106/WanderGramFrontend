@@ -12,7 +12,8 @@ const NewsCards = ({ filter }) => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/news"); //
+        // Updated to use live API URL
+        const response = await axios.get("https://wandergrambackend.onrender.com/news");
         setNews(response.data.articles);
         setLoading(false);
       } catch (err) {
@@ -22,6 +23,7 @@ const NewsCards = ({ filter }) => {
     };
     fetchNews();
   }, []); // Refetch news whenever the filter changes
+
   useEffect(() => {
     // Filter news based on the selected filter
     let filtered = news;
