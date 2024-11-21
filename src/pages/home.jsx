@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/sidebar';
-import Title from '../components/Title';
+import Title from '../components/title';
 import NewsBox from '../components/newsBox';
 
 const Home = () => {
