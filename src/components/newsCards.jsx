@@ -12,18 +12,17 @@ const NewsCards = ({ filter }) => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // Updated to use live API URL
-        const response = await axios.get("https://wandergrambackend.onrender.com/news");
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/news`);
         setNews(response.data.articles);
         setLoading(false);
       } catch (err) {
-        setError("Failed to fetch news");
+        console.error("Full error details:", err);
+        setError(err.response?.data?.error || "Failed to fetch news");
         setLoading(false);
       }
     };
     fetchNews();
   }, []); // Refetch news whenever the filter changes
-
   useEffect(() => {
     // Filter news based on the selected filter
     let filtered = news;
