@@ -17,7 +17,7 @@ import bbc from "../assets/bbc.webp";
 import ap from "../assets/ap.png";
 import wsj from "../assets/wsj.png";
 import bloomberg from "../assets/bloomberg.png";
-import toi from "../assets/toi.webp";
+import toi from "../assets/TOI.webp";
 
 const Sidebar = ({ onFilterChange }) => {
   const [activeFilter, setActiveFilter] = useState("Home");
