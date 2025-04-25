@@ -63,7 +63,7 @@ const Sidebar = ({ onFilterChange }) => {
           activeFilter === item.name ? "bg-purple-200" : ""
         }`}
         sx={{
-          padding: "10px 16px",
+          padding: "5px 16px",
           marginBottom: "6px",
           position: "relative",
           alignItems: "center",
@@ -118,26 +118,39 @@ const Sidebar = ({ onFilterChange }) => {
           anchor="left"
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
+          variant="temporary"
+          ModalProps={{
+            keepMounted: true, // Better mobile performance
+          }}
           sx={{
-            "& .MuiDrawer-paper": {
+            '& .MuiPaper-root': { 
+              top: 0,
+              padding: 0,
+              margin: 0,
               width: "85%",
               maxWidth: "320px",
               minWidth: "240px",
               boxSizing: "border-box",
-              paddingTop: "0px",
-              borderTopRightRadius: "16px",
-              borderBottomRightRadius: "16px",
+              backgroundColor: "#ffffff",
+              border: "none",
+            },
+            '& .MuiBackdrop-root': {
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
             },
           }}
         >
-          <div className="flex justify-between items-center p-4 bg-purple-50 border-b border-purple-100">
+          <div className="flex justify-between items-center p-4 bg-white border-b border-purple-100">
             <h2 className="text-lg font-semibold text-purple-800">News Filters</h2>
-            <IconButton onClick={() => setDrawerOpen(false)} className="hover:bg-purple-100">
+            <IconButton 
+              onClick={() => setDrawerOpen(false)} 
+              className="hover:bg-purple-100"
+              sx={{ padding: "8px" }}
+            >
               <CloseIcon sx={{ color: "#7c3aed" }} />
             </IconButton>
           </div>
 
-          <div className="overflow-y-auto">
+          <div className="overflow-y-auto flex-1">
             <div className="p-3">
               <h3 className="text-sm font-medium text-purple-700 px-3 py-2 uppercase tracking-wider">Sentiment</h3>
               <List dense>{renderMenuItems(menuItems.slice(0, 4))}</List>
@@ -155,21 +168,23 @@ const Sidebar = ({ onFilterChange }) => {
     );
   }
 
-  // For desktop view, use a simplified structure similar to the old sidebar
+  // For desktop view
   return (
-    <div className="h-screen bg-white p-4">
-      <h2 className="text-xl font-bold text-purple-800 mb-6">News Filters</h2>
+    <div className="h-screen bg-white p-4 flex flex-col overflow-hidden">
+      <h2 className="text-xl font-bold text-purple-800 mb-6 flex-shrink-0">News Filters</h2>
       
-      <div>
-        <h3 className="text-sm font-medium text-purple-700 px-2 py-2 uppercase tracking-wider">Sentiment</h3>
-        <List dense>{renderMenuItems(menuItems.slice(0, 4))}</List>
-      </div>
+      <div className="overflow-y-auto flex-1 pr-1">
+        <div className="mb-4">
+          <h3 className="text-sm font-medium text-purple-700 px-2 py-2 uppercase tracking-wider flex-shrink-0">Sentiment</h3>
+          <List dense>{renderMenuItems(menuItems.slice(0, 4))}</List>
+        </div>
 
-      <Divider sx={{ my: 2 }} />
+        <Divider sx={{ my: 2 }} />
 
-      <div>
-        <h3 className="text-sm font-medium text-purple-700 px-2 py-2 uppercase tracking-wider">Sources</h3>
-        <List dense>{renderMenuItems(menuItems.slice(4))}</List>
+        <div className="mb-4">
+          <h3 className="text-sm font-medium text-purple-700 px-2 py-2 uppercase tracking-wider flex-shrink-0">Sources</h3>
+          <List dense>{renderMenuItems(menuItems.slice(4))}</List>
+        </div>
       </div>
     </div>
   );
