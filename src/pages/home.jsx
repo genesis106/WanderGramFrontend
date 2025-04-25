@@ -11,19 +11,26 @@ const Home = () => {
   };
 
   return (
-<div className="flex flex-col lg:flex-row h-screen bg-white" style={{ padding: 0, margin: 0 }}>      <div className="w-full lg:w-1/4 bg-gray-100 p-4 lg:h-screen lg:overflow-y-auto">
+    <div className="flex flex-col lg:flex-row h-screen">
+      {/* Sidebar - Only visible on desktop */}
+      <div className="hidden lg:block lg:w-1/4 bg-white lg:h-screen lg:overflow-y-auto">
+        <Sidebar onFilterChange={handleFilterChange} />
+      </div>
+
+      {/* Mobile Sidebar is rendered inside the Sidebar component */}
+      <div className="lg:hidden">
         <Sidebar onFilterChange={handleFilterChange} />
       </div>
 
       {/* Main Content */}
-      <div className="w-full lg:w-3/4 flex flex-col h-screen" style={{ padding: 0 }}>
+      <div className="w-full lg:w-3/4 flex flex-col h-screen p-0">
         {/* Title */}
-        <div className="bg-[#dcd8f3] sticky top-0 z-10" style={{ padding: 0 }}>
+        <div className="bg-[#dcd8f3] sticky top-0 z-10 p-0">
           <Title />
         </div>
 
         {/* NewsBox */}
-        <div className="flex-grow overflow-y-auto" style={{ padding: 0, margin: 0 }}>
+        <div className="flex-grow overflow-y-auto p-0">
           <NewsBox filter={filter} />
         </div>
       </div>
